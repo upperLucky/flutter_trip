@@ -21,7 +21,12 @@ class _TabNavigatorState extends State<TabNavigator> {
       body: PageView(
         controller: _controller,
         children: <Widget>[HomePage(), SearchPage(), TravelPage(), MyPage()],
-        physics: NeverScrollableScrollPhysics(),
+//        physics: NeverScrollableScrollPhysics(),   // 禁止PageView左右滑动
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
